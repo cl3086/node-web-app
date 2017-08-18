@@ -27,6 +27,15 @@ app.post("/todos", (req, res) => {
     });
 });
 
+app.get("/todos", (req, res) => {
+    Todo.find().then((todos) => {
+        // sending an object where todos: todos (ES6 syntax)
+        res.send({todos})
+    }, (err) => {
+        res.status(400).send(err);
+    });
+});
+
 app.listen(16000, () => {
     console.log("Started on port 16000");
 });
